@@ -1,0 +1,19 @@
+node_modules/
+.next/
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+coverage/
+data/uploads/*
+!data/uploads/.gitkeep
+*.tsbuildinfo
+
+# logs
+*.log
+
+# local databases
+*.db
+*.sqlite
+*.sqlite3

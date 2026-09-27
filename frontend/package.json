@@ -1,0 +1,18 @@
+
+{
+  "name": "polaris-frontend",
+  "private": true,
+  "scripts": {"dev":"next dev","build":"next build","start":"next start"},
+  "dependencies": {
+    "next":"15.5.2",
+    "react":"19.1.1",
+    "react-dom":"19.1.1",
+    "lucide-react":"0.468.0"
+  },
+  "devDependencies": {
+    "@types/node":"22.15.30",
+    "@types/react":"19.1.10",
+    "@types/react-dom":"19.1.7",
+    "typescript":"5.9.2"
+  }
+}

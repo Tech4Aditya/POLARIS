@@ -1,0 +1,707 @@
+{
+  "benchmark": "POLARIS Antarctic RAG benchmark v1",
+  "questions": 50,
+  "completed": 50,
+  "source_recall_at_5": 0.92,
+  "answer_keyword_coverage": 0.88,
+  "results": [
+    {
+      "id": "Q01",
+      "question": "How many year-round Antarctic research stations does India operate?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "India operates two year-round Antarctic research stations, Maitri and Bharati. They support scientific observations and research activities in the Antarctic region. India began Antarctic expeditions in 1981.",
+      "sources": [
+        "Indian Antarctic Stations: Maitri and Bharati",
+        "Indian Antarctic Programme Overview",
+        "Australian Antarctic Research Stations",
+        "East Antarctica Research Context",
+        "BAS Research Stations and Bases"
+      ]
+    },
+    {
+      "id": "Q02",
+      "question": "What are the names of India's year-round Antarctic research stations?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "India operates two year-round Antarctic research stations, Maitri and Bharati. They support scientific observations and research activities in the Antarctic region. India began Antarctic expeditions in 1981.",
+      "sources": [
+        "Indian Antarctic Stations: Maitri and Bharati",
+        "Indian Antarctic Programme Overview",
+        "East Antarctica Research Context",
+        "BAS Research Stations and Bases",
+        "Australian Antarctic Research Stations"
+      ]
+    },
+    {
+      "id": "Q03",
+      "question": "When did India begin Antarctic expeditions?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "India began Antarctic expeditions in 1981. The Indian Antarctic programme operates the year-round research stations Maitri and Bharati. The programme supports research in climate processes, crustal evolution, environmental processes, conservation and Antarctic ecosystems.",
+      "sources": [
+        "Indian Antarctic Programme Overview",
+        "East Antarctica Research Context",
+        "45th Antarctic Expedition Report",
+        "Antarctic Station Operations Brief",
+        "Polar Research Publications Index"
+      ]
+    },
+    {
+      "id": "Q04",
+      "question": "What kinds of research does the Indian Antarctic programme support?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "India began Antarctic expeditions in 1981. The Indian Antarctic programme operates the year-round research stations Maitri and Bharati. The programme supports research in climate processes, crustal evolution, environmental processes, conservation and Antarctic ecosystems.",
+      "sources": [
+        "Indian Antarctic Programme Overview",
+        "East Antarctica Research Context",
+        "South Pole Research Context",
+        "45th Antarctic Expedition Report",
+        "Indian Antarctic Stations: Maitri and Bharati"
+      ]
+    },
+    {
+      "id": "Q05",
+      "question": "What is the purpose of the Maitri-II station planning record?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Government records describe plans for a new research station near the existing Maitri station in East Antarctica, with environmental protocol compliance and improved scientific research capability as stated objectives. Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations. Station records provide operational context for scientific observations.",
+      "sources": [
+        "Maitri-II Station Planning Record",
+        "Antarctic Field Operations",
+        "Indian Antarctic Stations: Maitri and Bharati",
+        "Indian Antarctic Programme Overview",
+        "Australian Antarctic Research Stations"
+      ]
+    },
+    {
+      "id": "Q06",
+      "question": "Which Australian Antarctic stations are listed in the research stations record?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "East Antarctica contains major research sites and stations, including Indian, Australian, German and inland research facilities. The Australian Antarctic Division operates permanent research stations including Mawson, Davis and Casey, with Wilkins Aerodrome serving seasonal intercontinental operations. Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations.",
+      "sources": [
+        "East Antarctica Research Context",
+        "Australian Antarctic Research Stations",
+        "Antarctic Field Operations",
+        "Maitri-II Station Planning Record",
+        "Antarctic Data Discovery Guide"
+      ]
+    },
+    {
+      "id": "Q07",
+      "question": "What does the Australian Antarctic publications database contain?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The Australian Antarctic Program maintains a publications database for scientific papers and articles related to Antarctic research, alongside report series including ANARE Reports and research notes. East Antarctica contains major research sites and stations, including Indian, Australian, German and inland research facilities. A demonstration index of polar science publications and research themes covering Antarctic and Arctic research.",
+      "sources": [
+        "Australian Antarctic Publications Database",
+        "East Antarctica Research Context",
+        "Polar Research Publications Index",
+        "Australian Antarctic Research Stations",
+        "Antarctic Research Themes"
+      ]
+    },
+    {
+      "id": "Q08",
+      "question": "What does the BAS research stations dataset provide?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Research datasets should retain provider attribution, dataset identifiers, version information, temporal and spatial coverage, access requirements and citation guidance. The British Antarctic Survey maintains a dataset of research station and base locations in Antarctica and the Arctic, including facility names, seasonality and identifiers. Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations.",
+      "sources": [
+        "Antarctic Dataset Citation Practice",
+        "BAS Research Stations and Bases",
+        "Antarctic Field Operations",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "ATLAS/ICESat-2 Antarctic Land Ice Height Change"
+      ]
+    },
+    {
+      "id": "Q09",
+      "question": "What does the ITS_LIVE Antarctic elevation change product measure?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The NSIDC ITS_LIVE Antarctic grounded ice sheet elevation change product provides monthly elevation-change data derived from multiple radar and laser altimetry missions, with coverage from 1985 to 2020. Satellite altimetry and remote sensing products provide repeated measurements used to study ice-sheet elevation, extent and change over time. Climate observation programmes combine station measurements, field observations and satellite-derived products to study changes in the Antarctic environment.",
+      "sources": [
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "Antarctic Ice-Sheet Monitoring Metadata",
+        "Antarctic Climate Observation Metadata",
+        "Antarctic Ice Thickness \u2014 IceBridge HiCARS",
+        "ICESat-2 Antarctic Data Collection"
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "What are Antarctic ice-sheet extent masks used to represent?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The NSIDC ITS_LIVE Antarctic annual ice-sheet extent masks provide approximately annual 240 m Antarctic ice masks from 1997 through 2021. Satellite altimetry and remote sensing products provide repeated measurements used to study ice-sheet elevation, extent and change over time. Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations.",
+      "sources": [
+        "Antarctic Ice Sheet Extent Masks \u2014 ITS_LIVE",
+        "Antarctic Ice-Sheet Monitoring Metadata",
+        "Antarctic Data Discovery Guide",
+        "Antarctic Research Themes",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE"
+      ]
+    },
+    {
+      "id": "Q11",
+      "question": "What types of observations are included in the ICESat-2 Antarctic data collection?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "ATL14 provides a high-resolution gridded digital elevation model for Antarctic land ice and is derived from ICESat-2 observations. NSIDC distributes official ICESat-2 products covering terrain elevation, land ice height, sea ice height and related measurements. Antarctic products include ATL06, ATL07, ATL14 and ATL15.",
+      "sources": [
+        "ATLAS/ICESat-2 Antarctic Land Ice Height",
+        "ICESat-2 Antarctic Data Collection",
+        "Antarctic Data Discovery Guide",
+        "45th Antarctic Expedition Report",
+        "Antarctic Station Operations Brief"
+      ]
+    },
+    {
+      "id": "Q12",
+      "question": "What is ATL14 used for in Antarctica?",
+      "source_hit": false,
+      "keyword_coverage": 0.0,
+      "answer": "POLARIS groups Antarctic research into climate and atmosphere, ice sheets and glaciers, sea ice, oceanography, geology, ecosystems, environmental monitoring, station operations and polar technology. The British Antarctic Survey maintains a dataset of research station and base locations in Antarctica and the Arctic, including facility names, seasonality and identifiers. East Antarctica contains major research sites and stations, including Indian, Australian, German and inland research facilities.",
+      "sources": [
+        "Antarctic Research Themes",
+        "BAS Research Stations and Bases",
+        "East Antarctica Research Context",
+        "ICESat-2 Antarctic Data Collection",
+        "South Pole Research Context"
+      ]
+    },
+    {
+      "id": "Q13",
+      "question": "What does ATL15 provide for Antarctic land ice?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "ATL15 provides gridded land-ice height changes and change rates at multiple spatial and temporal resolutions, including Antarctic coverage. ATL14 provides a high-resolution gridded digital elevation model for Antarctic land ice and is derived from ICESat-2 observations. Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations.",
+      "sources": [
+        "ATLAS/ICESat-2 Antarctic Land Ice Height Change",
+        "ATLAS/ICESat-2 Antarctic Land Ice Height",
+        "Antarctic Data Discovery Guide",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "ICESat-2 Antarctic Data Collection"
+      ]
+    },
+    {
+      "id": "Q14",
+      "question": "What does the GLAS/ICESat Antarctic altimetry dataset contain?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "NASA NSIDC archives ICESat GLAS Antarctic and Greenland ice-sheet altimetry products containing surface elevations and related geolocation and correction information. Research datasets should retain provider attribution, dataset identifiers, version information, temporal and spatial coverage, access requirements and citation guidance. The NSIDC ITS_LIVE Antarctic grounded ice sheet elevation change product provides monthly elevation-change data derived from multiple radar and laser altimetry missions, with coverage from 1985 to 2020.",
+      "sources": [
+        "GLAS/ICESat Antarctic Altimetry",
+        "Antarctic Dataset Citation Practice",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "BAS Research Stations and Bases",
+        "ATLAS/ICESat-2 Antarctic Land Ice Height"
+      ]
+    },
+    {
+      "id": "Q15",
+      "question": "What measurements are included in the IceBridge HiCARS Antarctic product?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The IceBridge HiCARS product contains Antarctic ice thickness, surface elevation, bed elevation and radar echo-strength measurements collected by airborne radar. Climate observation programmes combine station measurements, field observations and satellite-derived products to study changes in the Antarctic environment. NSIDC distributes official ICESat-2 products covering terrain elevation, land ice height, sea ice height and related measurements.",
+      "sources": [
+        "Antarctic Ice Thickness \u2014 IceBridge HiCARS",
+        "Antarctic Climate Observation Metadata",
+        "ICESat-2 Antarctic Data Collection",
+        "Antarctic Ice-Sheet Monitoring Metadata",
+        "45th Antarctic Expedition Report"
+      ]
+    },
+    {
+      "id": "Q16",
+      "question": "What does the West Antarctic Ice Sheet accumulation dataset describe?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "A research dataset describing radar internal layers, ice-sheet topography and model results for Antarctic sites, including accumulation and divide-migration histories. Research datasets should retain provider attribution, dataset identifiers, version information, temporal and spatial coverage, access requirements and citation guidance. The NSIDC ITS_LIVE Antarctic grounded ice sheet elevation change product provides monthly elevation-change data derived from multiple radar and laser altimetry missions, with coverage from 1985 to 2020.",
+      "sources": [
+        "West Antarctic Ice Sheet Accumulation and Thickness Histories",
+        "Antarctic Dataset Citation Practice",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "BAS Research Stations and Bases",
+        "GLAS/ICESat Antarctic Altimetry"
+      ]
+    },
+    {
+      "id": "Q17",
+      "question": "What major themes does POLARIS use to organize Antarctic research?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "POLARIS groups Antarctic research into climate and atmosphere, ice sheets and glaciers, sea ice, oceanography, geology, ecosystems, environmental monitoring, station operations and polar technology. A demonstration index of polar science publications and research themes covering Antarctic and Arctic research. East Antarctica contains major research sites and stations, including Indian, Australian, German and inland research facilities.",
+      "sources": [
+        "Antarctic Research Themes",
+        "Polar Research Publications Index",
+        "East Antarctica Research Context",
+        "POLARIS Source Provenance Policy",
+        "Antarctic Peninsula Research Context"
+      ]
+    },
+    {
+      "id": "Q18",
+      "question": "How do Antarctic field operations connect research teams to remote sites?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations. Station records provide operational context for scientific observations. Environmental observations, field operations, meteorological measurements and station activities from the 45th Indian Scientific Expedition to Antarctica.",
+      "sources": [
+        "Antarctic Field Operations",
+        "45th Antarctic Expedition Report",
+        "Antarctic Station Operations Brief",
+        "Antarctic Research Themes",
+        "Australian Antarctic Research Stations"
+      ]
+    },
+    {
+      "id": "Q19",
+      "question": "What types of Antarctic research data are listed in the data discovery guide?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations. Metadata records should preserve provider, coverage, format and citation information. The British Antarctic Survey maintains a dataset of research station and base locations in Antarctica and the Arctic, including facility names, seasonality and identifiers.",
+      "sources": [
+        "Antarctic Data Discovery Guide",
+        "BAS Research Stations and Bases",
+        "Antarctic Research Themes",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "Australian Antarctic Publications Database"
+      ]
+    },
+    {
+      "id": "Q20",
+      "question": "What does the Polar Research Publications Index provide?",
+      "source_hit": true,
+      "keyword_coverage": 0.667,
+      "answer": "A demonstration index of polar science publications and research themes covering Antarctic and Arctic research. POLARIS preserves source title, provider, source URL, document type, year and extracted evidence so generated knowledge can be traced back to a source record. The Australian Antarctic Program maintains a publications database for scientific papers and articles related to Antarctic research, alongside report series including ANARE Reports and research notes.",
+      "sources": [
+        "Polar Research Publications Index",
+        "POLARIS Source Provenance Policy",
+        "Australian Antarctic Publications Database",
+        "Antarctic Data Discovery Guide",
+        "Antarctic Dataset Citation Practice"
+      ]
+    },
+    {
+      "id": "Q21",
+      "question": "What do Antarctic station operations support?",
+      "source_hit": false,
+      "keyword_coverage": 0.333,
+      "answer": "The Australian Antarctic Division operates permanent research stations including Mawson, Davis and Casey, with Wilkins Aerodrome serving seasonal intercontinental operations. India operates two year-round Antarctic research stations, Maitri and Bharati. They support scientific observations and research activities in the Antarctic region.",
+      "sources": [
+        "Australian Antarctic Research Stations",
+        "Indian Antarctic Stations: Maitri and Bharati",
+        "Indian Antarctic Programme Overview",
+        "Antarctic Field Operations",
+        "Antarctic Research Themes"
+      ]
+    },
+    {
+      "id": "Q22",
+      "question": "Where is Amundsen-Scott South Pole Station located?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The Amundsen-Scott South Pole Station is located at the geographic South Pole and supports scientific research in an extreme inland Antarctic environment. Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations. Station records provide operational context for scientific observations.",
+      "sources": [
+        "South Pole Research Context",
+        "Antarctic Field Operations",
+        "Australian Antarctic Research Stations",
+        "East Antarctica Research Context",
+        "Indian Antarctic Stations: Maitri and Bharati"
+      ]
+    },
+    {
+      "id": "Q23",
+      "question": "What research context is associated with Concordia Station at Dome C?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations. Station records provide operational context for scientific observations. Concordia Station at Dome C supports European Antarctic science in a high-elevation inland environment and is operated by France and Italy.",
+      "sources": [
+        "Antarctic Field Operations",
+        "Dome C Research Context",
+        "East Antarctica Research Context",
+        "Australian Antarctic Research Stations",
+        "Indian Antarctic Stations: Maitri and Bharati"
+      ]
+    },
+    {
+      "id": "Q24",
+      "question": "What is significant about the Antarctic Peninsula for research?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The Antarctic Peninsula hosts major research infrastructure and field programmes, including the British Antarctic Survey station at Rothera. POLARIS groups Antarctic research into climate and atmosphere, ice sheets and glaciers, sea ice, oceanography, geology, ecosystems, environmental monitoring, station operations and polar technology. The British Antarctic Survey maintains a dataset of research station and base locations in Antarctica and the Arctic, including facility names, seasonality and identifiers.",
+      "sources": [
+        "Antarctic Peninsula Research Context",
+        "Antarctic Research Themes",
+        "BAS Research Stations and Bases",
+        "East Antarctica Research Context",
+        "South Pole Research Context"
+      ]
+    },
+    {
+      "id": "Q25",
+      "question": "What major research sites are found in East Antarctica?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "East Antarctica contains major research sites and stations, including Indian, Australian, German and inland research facilities. Government records describe plans for a new research station near the existing Maitri station in East Antarctica, with environmental protocol compliance and improved scientific research capability as stated objectives. The Antarctic Peninsula hosts major research infrastructure and field programmes, including the British Antarctic Survey station at Rothera.",
+      "sources": [
+        "East Antarctica Research Context",
+        "Maitri-II Station Planning Record",
+        "Antarctic Peninsula Research Context",
+        "Antarctic Research Themes",
+        "BAS Research Stations and Bases"
+      ]
+    },
+    {
+      "id": "Q26",
+      "question": "How do climate observation programmes study changes in Antarctica?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Climate observation programmes combine station measurements, field observations and satellite-derived products to study changes in the Antarctic environment. POLARIS groups Antarctic research into climate and atmosphere, ice sheets and glaciers, sea ice, oceanography, geology, ecosystems, environmental monitoring, station operations and polar technology. Environmental observations, field operations, meteorological measurements and station activities from the 45th Indian Scientific Expedition to Antarctica.",
+      "sources": [
+        "Antarctic Climate Observation Metadata",
+        "Antarctic Research Themes",
+        "45th Antarctic Expedition Report",
+        "Antarctic Station Operations Brief",
+        "Antarctic Data Discovery Guide"
+      ]
+    },
+    {
+      "id": "Q27",
+      "question": "What can satellite altimetry and remote sensing measure for Antarctic ice sheets?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Satellite altimetry and remote sensing products provide repeated measurements used to study ice-sheet elevation, extent and change over time. Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations. Metadata records should preserve provider, coverage, format and citation information.",
+      "sources": [
+        "Antarctic Ice-Sheet Monitoring Metadata",
+        "Antarctic Data Discovery Guide",
+        "Antarctic Climate Observation Metadata",
+        "Antarctic Research Themes",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE"
+      ]
+    },
+    {
+      "id": "Q28",
+      "question": "What information should Antarctic research datasets retain for citation?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Research datasets should retain provider attribution, dataset identifiers, version information, temporal and spatial coverage, access requirements and citation guidance. Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations. Metadata records should preserve provider, coverage, format and citation information.",
+      "sources": [
+        "Antarctic Dataset Citation Practice",
+        "Antarctic Data Discovery Guide",
+        "POLARIS Human Review Policy",
+        "Antarctic Research Themes",
+        "BAS Research Stations and Bases"
+      ]
+    },
+    {
+      "id": "Q29",
+      "question": "What source information does POLARIS preserve for generated knowledge?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "POLARIS preserves source title, provider, source URL, document type, year and extracted evidence so generated knowledge can be traced back to a source record. AI-assisted content should pass through a human review step before publication. Reviewers can approve a draft or request changes while retaining the source trail.",
+      "sources": [
+        "POLARIS Source Provenance Policy",
+        "POLARIS Human Review Policy",
+        "Antarctic Data Discovery Guide",
+        "Antarctic Research Themes",
+        "VayuNetra (4)"
+      ]
+    },
+    {
+      "id": "Q30",
+      "question": "Why does POLARIS require human review before publication?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The Australian Antarctic Program maintains a publications database for scientific papers and articles related to Antarctic research, alongside report series including ANARE Reports and research notes. AI-assisted content should pass through a human review step before publication. Reviewers can approve a draft or request changes while retaining the source trail.",
+      "sources": [
+        "Australian Antarctic Publications Database",
+        "POLARIS Human Review Policy",
+        "Polar Research Publications Index",
+        "Antarctic Dataset Citation Practice",
+        "Antarctic Research Themes"
+      ]
+    },
+    {
+      "id": "Q31",
+      "question": "Which Indian station is associated with East Antarctica?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "East Antarctica contains major research sites and stations, including Indian, Australian, German and inland research facilities. India began Antarctic expeditions in 1981. The Indian Antarctic programme operates the year-round research stations Maitri and Bharati.",
+      "sources": [
+        "East Antarctica Research Context",
+        "Indian Antarctic Programme Overview",
+        "Indian Antarctic Stations: Maitri and Bharati",
+        "Australian Antarctic Research Stations",
+        "BAS Research Stations and Bases"
+      ]
+    },
+    {
+      "id": "Q32",
+      "question": "Which stations are operated by the Australian Antarctic Division?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The Australian Antarctic Division operates permanent research stations including Mawson, Davis and Casey, with Wilkins Aerodrome serving seasonal intercontinental operations. East Antarctica contains major research sites and stations, including Indian, Australian, German and inland research facilities. The Australian Antarctic Program maintains a publications database for scientific papers and articles related to Antarctic research, alongside report series including ANARE Reports and research notes.",
+      "sources": [
+        "Australian Antarctic Research Stations",
+        "East Antarctica Research Context",
+        "Australian Antarctic Publications Database",
+        "BAS Research Stations and Bases",
+        "Dome C Research Context"
+      ]
+    },
+    {
+      "id": "Q33",
+      "question": "What kind of data can satellite altimetry provide for Antarctica?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations. Metadata records should preserve provider, coverage, format and citation information. Satellite altimetry and remote sensing products provide repeated measurements used to study ice-sheet elevation, extent and change over time.",
+      "sources": [
+        "Antarctic Data Discovery Guide",
+        "Antarctic Ice-Sheet Monitoring Metadata",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "POLARIS Source Provenance Policy",
+        "Antarctic Climate Observation Metadata"
+      ]
+    },
+    {
+      "id": "Q34",
+      "question": "Which dataset provides a high-resolution Antarctic land-ice elevation model?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "ATL14 provides a high-resolution gridded digital elevation model for Antarctic land ice and is derived from ICESat-2 observations. ATL15 provides gridded land-ice height changes and change rates at multiple spatial and temporal resolutions, including Antarctic coverage. The NSIDC ITS_LIVE Antarctic grounded ice sheet elevation change product provides monthly elevation-change data derived from multiple radar and laser altimetry missions, with coverage from 1985 to 2020.",
+      "sources": [
+        "ATLAS/ICESat-2 Antarctic Land Ice Height",
+        "ATLAS/ICESat-2 Antarctic Land Ice Height Change",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "GLAS/ICESat Antarctic Altimetry",
+        "West Antarctic Ice Sheet Accumulation and Thickness Histories"
+      ]
+    },
+    {
+      "id": "Q35",
+      "question": "Which dataset provides Antarctic land-ice height changes and rates?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "ATL15 provides gridded land-ice height changes and change rates at multiple spatial and temporal resolutions, including Antarctic coverage. ATL14 provides a high-resolution gridded digital elevation model for Antarctic land ice and is derived from ICESat-2 observations. The NSIDC ITS_LIVE Antarctic grounded ice sheet elevation change product provides monthly elevation-change data derived from multiple radar and laser altimetry missions, with coverage from 1985 to 2020.",
+      "sources": [
+        "ATLAS/ICESat-2 Antarctic Land Ice Height Change",
+        "ATLAS/ICESat-2 Antarctic Land Ice Height",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "Antarctic Dataset Citation Practice",
+        "ICESat-2 Antarctic Data Collection"
+      ]
+    },
+    {
+      "id": "Q36",
+      "question": "Which Antarctic dataset includes ice thickness and bed elevation from airborne radar?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "The IceBridge HiCARS product contains Antarctic ice thickness, surface elevation, bed elevation and radar echo-strength measurements collected by airborne radar. Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations. Metadata records should preserve provider, coverage, format and citation information.",
+      "sources": [
+        "Antarctic Ice Thickness \u2014 IceBridge HiCARS",
+        "Antarctic Data Discovery Guide",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE",
+        "West Antarctic Ice Sheet Accumulation and Thickness Histories",
+        "Antarctic Dataset Citation Practice"
+      ]
+    },
+    {
+      "id": "Q37",
+      "question": "What is the role of research stations in Antarctic climate observations?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Climate observation programmes combine station measurements, field observations and satellite-derived products to study changes in the Antarctic environment. India operates two year-round Antarctic research stations, Maitri and Bharati. They support scientific observations and research activities in the Antarctic region.",
+      "sources": [
+        "Antarctic Climate Observation Metadata",
+        "Indian Antarctic Stations: Maitri and Bharati",
+        "Indian Antarctic Programme Overview",
+        "Antarctic Field Operations",
+        "Antarctic Research Themes"
+      ]
+    },
+    {
+      "id": "Q38",
+      "question": "What research areas are associated with Antarctic ecosystems and conservation?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "India began Antarctic expeditions in 1981. The Indian Antarctic programme operates the year-round research stations Maitri and Bharati. The programme supports research in climate processes, crustal evolution, environmental processes, conservation and Antarctic ecosystems.",
+      "sources": [
+        "Indian Antarctic Programme Overview",
+        "Antarctic Research Themes",
+        "BAS Research Stations and Bases",
+        "East Antarctica Research Context",
+        "South Pole Research Context"
+      ]
+    },
+    {
+      "id": "Q39",
+      "question": "What does the BAS station dataset contain?",
+      "source_hit": true,
+      "keyword_coverage": 0.667,
+      "answer": "The British Antarctic Survey maintains a dataset of research station and base locations in Antarctica and the Arctic, including facility names, seasonality and identifiers. Research datasets should retain provider attribution, dataset identifiers, version information, temporal and spatial coverage, access requirements and citation guidance. Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations.",
+      "sources": [
+        "BAS Research Stations and Bases",
+        "Antarctic Dataset Citation Practice",
+        "Antarctic Field Operations",
+        "Australian Antarctic Research Stations",
+        "East Antarctica Research Context"
+      ]
+    },
+    {
+      "id": "Q40",
+      "question": "What is the geographic setting of Concordia Station?",
+      "source_hit": false,
+      "keyword_coverage": 0.0,
+      "answer": "Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations. Station records provide operational context for scientific observations. The Australian Antarctic Division operates permanent research stations including Mawson, Davis and Casey, with Wilkins Aerodrome serving seasonal intercontinental operations.",
+      "sources": [
+        "Antarctic Field Operations",
+        "Australian Antarctic Research Stations",
+        "East Antarctica Research Context",
+        "South Pole Research Context",
+        "Indian Antarctic Stations: Maitri and Bharati"
+      ]
+    },
+    {
+      "id": "Q41",
+      "question": "What kinds of infrastructure support Antarctic field operations?",
+      "source_hit": false,
+      "keyword_coverage": 0.0,
+      "answer": "Environmental observations, field operations, meteorological measurements and station activities from the 45th Indian Scientific Expedition to Antarctica. Maitri and Bharati station operations, scientific observations, logistics and field research activities in Antarctica. The Antarctic Peninsula hosts major research infrastructure and field programmes, including the British Antarctic Survey station at Rothera.",
+      "sources": [
+        "45th Antarctic Expedition Report",
+        "Antarctic Station Operations Brief",
+        "Antarctic Peninsula Research Context",
+        "Antarctic Research Themes",
+        "South Pole Research Context"
+      ]
+    },
+    {
+      "id": "Q42",
+      "question": "What should be preserved when citing a research dataset?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Research datasets should retain provider attribution, dataset identifiers, version information, temporal and spatial coverage, access requirements and citation guidance. Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations. Metadata records should preserve provider, coverage, format and citation information.",
+      "sources": [
+        "Antarctic Dataset Citation Practice",
+        "Antarctic Data Discovery Guide",
+        "BAS Research Stations and Bases",
+        "West Antarctic Ice Sheet Accumulation and Thickness Histories",
+        "Antarctic Ice Sheet Elevation Change \u2014 ITS_LIVE"
+      ]
+    },
+    {
+      "id": "Q43",
+      "question": "What does POLARIS preserve to maintain source provenance?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "POLARIS preserves source title, provider, source URL, document type, year and extracted evidence so generated knowledge can be traced back to a source record. AI-assisted content should pass through a human review step before publication. Reviewers can approve a draft or request changes while retaining the source trail.",
+      "sources": [
+        "POLARIS Source Provenance Policy",
+        "POLARIS Human Review Policy",
+        "Antarctic Data Discovery Guide",
+        "Antarctic Research Themes",
+        "Australian Antarctic Publications Database"
+      ]
+    },
+    {
+      "id": "Q44",
+      "question": "Can an AI-assisted draft be published without human review in POLARIS?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "AI-assisted content should pass through a human review step before publication. Reviewers can approve a draft or request changes while retaining the source trail. POLARIS preserves source title, provider, source URL, document type, year and extracted evidence so generated knowledge can be traced back to a source record.",
+      "sources": [
+        "POLARIS Human Review Policy",
+        "POLARIS Source Provenance Policy",
+        "Antarctic Research Themes"
+      ]
+    },
+    {
+      "id": "Q45",
+      "question": "What observations are used to study changes in the Antarctic environment?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Climate observation programmes combine station measurements, field observations and satellite-derived products to study changes in the Antarctic environment. Environmental observations, field operations, meteorological measurements and station activities from the 45th Indian Scientific Expedition to Antarctica. Antarctic research data may include satellite altimetry, ice elevation, ice extent, ice thickness, sea ice, terrain and environmental observations.",
+      "sources": [
+        "Antarctic Climate Observation Metadata",
+        "45th Antarctic Expedition Report",
+        "Antarctic Data Discovery Guide",
+        "Antarctic Research Themes",
+        "South Pole Research Context"
+      ]
+    },
+    {
+      "id": "Q46",
+      "question": "What does Antarctic ice-sheet monitoring use repeated measurements for?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "Satellite altimetry and remote sensing products provide repeated measurements used to study ice-sheet elevation, extent and change over time. POLARIS groups Antarctic research into climate and atmosphere, ice sheets and glaciers, sea ice, oceanography, geology, ecosystems, environmental monitoring, station operations and polar technology. The IceBridge HiCARS product contains Antarctic ice thickness, surface elevation, bed elevation and radar echo-strength measurements collected by airborne radar.",
+      "sources": [
+        "Antarctic Ice-Sheet Monitoring Metadata",
+        "Antarctic Research Themes",
+        "Antarctic Ice Thickness \u2014 IceBridge HiCARS",
+        "ICESat-2 Antarctic Data Collection",
+        "45th Antarctic Expedition Report"
+      ]
+    },
+    {
+      "id": "Q47",
+      "question": "What types of media and field records can support a polar knowledge platform?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "POLARIS preserves source title, provider, source URL, document type, year and extracted evidence so generated knowledge can be traced back to a source record. Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations. Station records provide operational context for scientific observations.",
+      "sources": [
+        "POLARIS Source Provenance Policy",
+        "Antarctic Field Operations",
+        "Antarctic Data Discovery Guide",
+        "Dome C Research Context",
+        "South Pole Research Context"
+      ]
+    },
+    {
+      "id": "Q48",
+      "question": "What does the Indian Antarctic programme operate year-round?",
+      "source_hit": true,
+      "keyword_coverage": 1.0,
+      "answer": "India began Antarctic expeditions in 1981. The Indian Antarctic programme operates the year-round research stations Maitri and Bharati. The programme supports research in climate processes, crustal evolution, environmental processes, conservation and Antarctic ecosystems.",
+      "sources": [
+        "Indian Antarctic Programme Overview",
+        "Indian Antarctic Stations: Maitri and Bharati",
+        "East Antarctica Research Context",
+        "45th Antarctic Expedition Report",
+        "Antarctic Climate Observation Metadata"
+      ]
+    },
+    {
+      "id": "Q49",
+      "question": "What kind of research is supported at the South Pole station?",
+      "source_hit": true,
+      "keyword_coverage": 0.0,
+      "answer": "Field operations connect research teams with permanent stations, aircraft, vessels and remote field locations. Station records provide operational context for scientific observations. The Australian Antarctic Division operates permanent research stations including Mawson, Davis and Casey, with Wilkins Aerodrome serving seasonal intercontinental operations.",
+      "sources": [
+        "Antarctic Field Operations",
+        "Australian Antarctic Research Stations",
+        "East Antarctica Research Context",
+        "South Pole Research Context",
+        "Indian Antarctic Stations: Maitri and Bharati"
+      ]
+    },
+    {
+      "id": "Q50",
+      "question": "What kinds of Antarctic observations can a knowledge platform index?",
+      "source_hit": true,
+      "keyword_coverage": 0.333,
+      "answer": "POLARIS preserves source title, provider, source URL, document type, year and extracted evidence so generated knowledge can be traced back to a source record. Environmental observations, field operations, meteorological measurements and station activities from the 45th Indian Scientific Expedition to Antarctica. Maitri and Bharati station operations, scientific observations, logistics and field research activities in Antarctica.",
+      "sources": [
+        "POLARIS Source Provenance Policy",
+        "45th Antarctic Expedition Report",
+        "Antarctic Station Operations Brief",
+        "Antarctic Climate Observation Metadata",
+        "Antarctic Data Discovery Guide"
+      ]
+    }
+  ]
+}
