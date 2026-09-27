@@ -1,71 +1,377 @@
+# POLARIS
 
-# POLARIS — SIH26063 Fixed Starter
+> **AI-powered intelligent search, discovery, and connection platform.**
 
-A functional starter for the Integrated Polar Science Outreach, Knowledge Repository
-and Media Dissemination Portal.
+POLARIS is an AI-driven platform designed to transform scattered information into meaningful, searchable knowledge and actionable connections.
 
-## Fixed in this version
-- Light mode is the default/primary theme.
-- Dark mode is available from the top-right theme control.
-- Clean institutional visual language; no purple/AI-template styling.
-- Sidebar navigation actually changes application views.
-- Search actually calls the FastAPI backend.
-- Expedition records load from PostgreSQL through the API.
-- Backend health/database status is shown in the UI.
-- Favicon is included, eliminating the `/favicon.ico` 404.
-- Responsive/mobile navigation.
-- Docker host ports: frontend 3000, API 8001, PostgreSQL 5433, Redis 6379.
+It combines a modern web interface, backend services, asynchronous workers, structured data storage, and an evaluation-driven RAG pipeline into a single modular system.
 
-## Run
+---
+
+## ✦ Why POLARIS?
+
+Modern information systems often suffer from three problems:
+
+- Information is scattered across multiple sources.
+- Traditional keyword search struggles with context and intent.
+- Finding the right information often requires manually navigating through large amounts of data.
+
+**POLARIS** addresses this through an intelligent retrieval and reasoning pipeline that allows users to interact with information naturally instead of relying only on traditional search.
+
+### Core idea
+
+```text
+User Query
+    ↓
+Intent Understanding
+    ↓
+Retrieval / Search
+    ↓
+Relevant Context
+    ↓
+AI Processing
+    ↓
+Grounded Response
+    ↓
+User
+```
+
+The system is designed around retrieval quality, grounded answers, modular architecture, and measurable evaluation.
+
+---
+
+## 🚀 Features
+
+### 🤖 AI-Powered Search
+Understand natural-language queries and retrieve information based on semantic relevance rather than relying purely on exact keyword matching.
+
+### 🔎 Retrieval-Augmented Generation
+POLARIS uses a retrieval pipeline to provide relevant context before generating responses. This helps reduce unsupported responses and keeps generated answers grounded in retrieved information.
+
+### 🧠 Context-Aware Responses
+Instead of treating every query as an isolated keyword search, the system works with retrieved context to produce more meaningful answers.
+
+### ⚡ Asynchronous Processing
+Background workers handle processing tasks separately from the main API, keeping the application architecture scalable and responsive.
+
+### 🌐 Modern Web Interface
+A responsive Next.js frontend provides the primary user-facing interface for interacting with POLARIS.
+
+### 🗄️ Structured Data Layer
+The project includes a dedicated database initialization layer for managing application data.
+
+### 📊 Evaluation Pipeline
+POLARIS includes an evaluation framework for measuring retrieval and answer quality instead of relying only on subjective testing.
+
+Current evaluation artifacts are available in:
+```
+docs/evaluation/
+```
+
+### 🐳 Dockerized Architecture
+Backend and worker services include Docker configurations, with a root-level `docker-compose.yml` for running the system as a multi-service application.
+
+---
+
+## 🏗️ Architecture
+
+```
+                    ┌──────────────────────┐
+                    │       POLARIS        │
+                    │    Web Interface     │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │      Backend API     │
+                    │      FastAPI         │
+                    └───────┬───────┬──────┘
+                            │       │
+                 ┌──────────┘       └──────────┐
+                 ▼                             ▼
+        ┌─────────────────┐          ┌─────────────────┐
+        │    Database     │          │     Worker      │
+        │    / Storage    │          │  Async Tasks    │
+        └─────────────────┘          └────────┬────────┘
+                                              │
+                                              ▼
+                                   ┌────────────────────┐
+                                   │ AI / RAG Pipeline  │
+                                   │ Retrieval + Answer │
+                                   └────────────────────┘
+```
+
+For the detailed architecture, see → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+
+---
+
+## 📁 Project Structure
+
+```
+POLARIS/
+│
+├── backend/
+│   ├── Dockerfile
+│   ├── app.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── app/
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── public/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── next.config.ts
+│
+├── worker/
+│   ├── Dockerfile
+│   ├── worker.py
+│   └── requirements.txt
+│
+├── database/
+│   └── init.sql
+│
+├── data/
+│   └── uploads/
+│
+├── scripts/
+│   └── evaluation/
+│       ├── evaluate_rag.py
+│       └── questions.json
+│
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── PRODUCT.md
+│   ├── PPT_MAPPING.md
+│   └── evaluation/
+│       ├── RAG_EVALUATION.md
+│       └── latest_results.json
+│
+├── docker-compose.yml
+├── .env.example
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- Next.js
+- React
+- TypeScript
+- CSS
+
+**Backend**
+- Python
+- FastAPI
+
+**AI / Retrieval**
+- Retrieval-Augmented Generation (RAG)
+- Semantic retrieval
+- Context-grounded response generation
+- Automated evaluation pipeline
+
+**Infrastructure**
+- Docker
+- Docker Compose
+- Background worker architecture
+
+**Database**
+- SQL-based persistent storage
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/<YOUR_USERNAME>/POLARIS.git
+cd POLARIS
+```
+
+### 2. Configure environment variables
+
+Create your local environment file:
+```bash
+cp .env.example .env
+```
+
+On Windows PowerShell:
 ```powershell
-copy .env.example .env
-docker compose down --remove-orphans
+Copy-Item .env.example .env
+```
+
+Add the required API keys and configuration values to `.env`.
+
+> **Never commit `.env` to GitHub.**
+
+---
+
+## 🐳 Run with Docker
+
+The recommended way to start the complete application is:
+```bash
 docker compose up --build
 ```
 
-Open:
-- http://localhost:3000
-- http://localhost:8001/docs
-- http://localhost:8001/health
+To run in detached mode:
+```bash
+docker compose up --build -d
+```
 
-Internal Docker ports remain PostgreSQL 5432 and backend 8000.
+To stop the services:
+```bash
+docker compose down
+```
 
-## v0.9.1 milestone
-The Archive now has live database search, clickable source records, a document inspection view, source metadata, extracted text, and a direct handoff into the Knowledge Engine workspace.
+---
 
-## v0.9.1 milestone
-Added the source-grounded Knowledge Engine: ask a question, retrieve ranked indexed passages, return a grounded extractive answer, expose the evidence trail, and open supporting source records.
+## 💻 Development
 
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+The frontend development server will start using the Next.js development environment.
 
-## v0.9.1 — Interaction + Retrieval Fix
-- Natural-language archive queries now match metadata, regions, document types and aliases.
-- Knowledge Engine no longer fails just because the exact query words are absent from one chunk.
-- Example questions now immediately execute the Knowledge Engine.
-- Interactive controls use explicit button types and keyboard focus states.
+### Backend
 
+Create and activate a Python virtual environment:
+```bash
+python -m venv .venv
+```
 
-## v0.9.1 — Self-healing data + live station map
-Existing Docker volumes are automatically seeded with demo documents and stations. The Polar Map now loads station coordinates from the API and supports clickable station details.
+Windows:
+```bash
+.venv\Scripts\activate
+```
 
-## v0.9.1 — Source Ingestion + Polar Field Palette
+Linux / macOS:
+```bash
+source .venv/bin/activate
+```
 
-- Added real PDF/DOCX/TXT/Markdown source ingestion.
-- Added text extraction, chunk creation and PostgreSQL indexing.
-- Added persistent `data/uploads` storage through Docker.
-- Added Archive → Add Source workflow with processing and success states.
-- Added source metadata fields for title, type, year and region.
-- Added a snowy field-notebook visual palette using expedition orange + ice blue.
-- Preserved the light-first/dark-mode system.
+Install dependencies:
+```bash
+pip install -r backend/requirements.txt
+```
 
-## v0.9.1 — Build + Map Stabilization
-- Fixed missing `setContentDraft` state blocking Next.js production builds.
-- Replaced the previous decorative map with a real OpenStreetMap base layer and API-backed station panel.
-- Added persistent upload storage mapping.
+Start the API:
+```bash
+uvicorn backend.app:app --reload
+```
 
+---
 
-## v0.12 Demo-complete layer
-- Preloaded Antarctic research corpus and dataset metadata
-- Real Leaflet/OpenStreetMap station map
-- Media catalogue with provenance metadata
-- Human-reviewed publication library
-- Knowledge -> grounded draft -> review -> publish flow
+## 📊 Evaluation
+
+POLARIS includes a dedicated evaluation pipeline to measure the quality of the retrieval and answer-generation system.
+
+Evaluation scripts are located in:
+```
+scripts/evaluation/
+```
+
+Run:
+```bash
+python scripts/evaluation/evaluate_rag.py
+```
+
+Evaluation results are stored under:
+```
+docs/evaluation/
+```
+
+The repository currently tracks metrics including:
+- Retrieval recall
+- Answer keyword coverage
+- Retrieval quality
+- Response grounding
+
+This makes the system measurable rather than purely demonstrative.
+
+---
+
+## 🔬 Engineering Approach
+
+POLARIS follows a few core principles:
+
+1. **Retrieval before generation** — The system prioritizes retrieving useful context before generating an answer.
+2. **Modular architecture** — Frontend, backend, worker, database, and evaluation components remain separated so individual components can evolve independently.
+3. **Evaluation-driven development** — Changes to the retrieval pipeline can be measured against an evaluation set instead of relying only on manual testing.
+4. **Reproducibility** — Configuration, evaluation scripts, architecture documentation, and deployment files are maintained inside the repository.
+5. **Security by default** — Secrets and environment-specific configuration are excluded from version control through `.gitignore` and `.env` based configuration.
+
+---
+
+## 📚 Documentation
+
+| Document | Description |
+|---|---|
+| [`ARCHITECTURE.md`](docs/ARCHITECTURE.md) | System architecture and component interaction |
+| [`PRODUCT.md`](docs/PRODUCT.md) | Product concept and functionality |
+| [`PPT_MAPPING.md`](docs/PPT_MAPPING.md) | Mapping between implementation and presentation |
+| [`RAG_EVALUATION.md`](docs/evaluation/RAG_EVALUATION.md) | RAG evaluation methodology |
+| [`latest_results.json`](docs/evaluation/latest_results.json) | Latest evaluation results |
+
+---
+
+## 🔐 Environment Variables
+
+Use `.env.example` as the template for local configuration.
+
+```
+.env.example
+    ↓
+copy to
+    ↓
+.env
+```
+
+**Never commit API keys, credentials, database passwords, or other secrets.**
+
+---
+
+## 🧪 Development Status
+
+POLARIS is an actively developed project.
+
+**Current system components include:**
+
+- [x] Web interface
+- [x] Backend API
+- [x] Database layer
+- [x] Background worker
+- [x] Docker configuration
+- [x] RAG pipeline
+- [x] Evaluation framework
+- [x] Retrieval evaluation
+- [x] Answer quality evaluation
+- [ ] Further retrieval optimization
+- [ ] Expanded evaluation datasets
+- [ ] Production deployment hardening
+
+---
+
+## 🎯 Vision
+
+POLARIS is built around a simple idea:
+
+> Finding the right information should not require knowing exactly where it is.
+
+The goal is to build an intelligent system that can understand what a user is looking for, retrieve the most relevant information, and turn that information into a useful, grounded response.
+
+---
+
+## 👥 Team
+
+Built with a focus on:
+
+**AI • Retrieval • Software Engineering • Human-Centered Search**
