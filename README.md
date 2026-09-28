@@ -101,7 +101,11 @@ Backend and worker services include Docker configurations, with a root-level `do
                                    └────────────────────┘
 ```
 
-For the detailed architecture, see → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+## Documentation
+
+- **System Architecture** → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+- **Backend Development Journey** → [`backend/JOURNEY.md`](backend/JOURNEY.md)
+- **Frontend Development Journey** → [`frontend/JOURNEY.md`](frontend/JOURNEY.md)
 
 ---
 
