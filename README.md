@@ -33,7 +33,7 @@ AI Processing
     ↓
 Grounded Response
     ↓
-User
+   User
 ```
 
 The system is designed around retrieval quality, grounded answers, modular architecture, and measurable evaluation.
@@ -371,6 +371,13 @@ The goal is to build an intelligent system that can understand what a user is lo
 ---
 
 ## 👥 Team
+
+1) Ujwal Parasher
+2) Namya Jain
+3) Krrish Rawat
+4) Shaurya Gupta
+5) Aditya Pandey
+6) Akriti Srivastava
 
 Built with a focus on:
 
