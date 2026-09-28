@@ -216,11 +216,48 @@ def ensure_demo_data():
             if station_name:
                 st = conn.execute("SELECT id FROM stations WHERE lower(name)=lower(%s) ORDER BY created_at LIMIT 1", [station_name]).fetchone()
                 station_id = st['id'] if st else None
-            meta = __import__('json').dumps({'provider':provider,'status':'catalogued','note':'Metadata/index record; media file is not bundled.'})
+            provider_urls = {
+                'British Antarctic Survey': 'https://www.bas.ac.uk/data/our-data/images/',
+                'Australian Antarctic Division': 'https://www.antarctica.gov.au/news/',
+                'National Science Foundation': 'https://www.nsf.gov/antarctica',
+                'NASA / NSIDC': 'https://nsidc.org/data/measures',
+                'Indian Antarctic Programme': 'https://ncpor.res.in/',
+                'NCPOR / MoES': 'https://www.moes.gov.in/',
+                'France / Italy': 'https://www.concordiastation.eu/',
+                'POLARIS Demo Corpus': 'https://www.antarctica.gov.au/about-antarctica/education-resources/'
+            }
+            source_url = provider_urls.get(provider, 'https://www.bas.ac.uk/data/our-data/images/')
+            if mtype == 'VIDEO':
+                source_url = 'https://mawsonshuts.antarctica.gov.au/resources/video-collection/' if provider == 'POLARIS Demo Corpus' else 'https://www.bas.ac.uk/data/our-data/images/'
+            elif mtype in ('PHOTOGRAPH','IMAGE') and provider == 'Australian Antarctic Division':
+                source_url = 'https://www.antarctica.gov.au/news/galleries/photo-galleries/'
+            elif mtype == 'SATELLITE':
+                source_url = 'https://nsidc.org/data/measures'
+            elif mtype == 'MAP':
+                source_url = 'https://nsidc.org/data/measures'
+            meta = __import__('json').dumps({'provider':provider,'status':'catalogued','source_url':source_url,'open_url':source_url,'note':'Catalogue record linked to an authoritative external media source; POLARIS does not bundle or mirror the media file.'})
             conn.execute(
                 "INSERT INTO media_assets(title,media_type,station_id,metadata) SELECT %s,%s,%s,%s::jsonb WHERE NOT EXISTS (SELECT 1 FROM media_assets WHERE title=%s)",
                 (title,mtype,station_id,meta,title)
             )
+
+        # Backfill source links for media records already present in an existing demo database.
+        media_rows = conn.execute("SELECT id, media_type, metadata FROM media_assets").fetchall()
+        for row in media_rows:
+            current = dict(row.get('metadata') or {})
+            provider = current.get('provider', '')
+            source_url = current.get('source_url')
+            if provider == 'British Antarctic Survey': source_url = 'https://www.bas.ac.uk/data/our-data/images/'
+            elif provider == 'Australian Antarctic Division': source_url = 'https://www.antarctica.gov.au/news/galleries/photo-galleries/' if row['media_type'] in ('PHOTOGRAPH','IMAGE') else 'https://www.antarctica.gov.au/news/'
+            elif provider == 'National Science Foundation': source_url = 'https://www.nsf.gov/antarctica'
+            elif provider == 'NASA / NSIDC': source_url = 'https://nsidc.org/data/measures'
+            elif provider == 'Indian Antarctic Programme': source_url = 'https://ncpor.res.in/'
+            elif provider == 'NCPOR / MoES': source_url = 'https://www.moes.gov.in/'
+            elif provider == 'France / Italy': source_url = 'https://www.concordiastation.eu/'
+            elif provider == 'POLARIS Demo Corpus': source_url = 'https://mawsonshuts.antarctica.gov.au/resources/video-collection/' if row['media_type'] == 'VIDEO' else 'https://www.antarctica.gov.au/about-antarctica/education-resources/'
+            if source_url:
+                current.update({'source_url': source_url, 'open_url': source_url, 'note': 'Catalogue record linked to an authoritative external media source; POLARIS does not bundle or mirror the media file.'})
+                conn.execute("UPDATE media_assets SET metadata=%s::jsonb WHERE id=%s", [__import__('json').dumps(current), row['id']])
 
         datasets = [
             ('MEaSUREs ITS_LIVE Antarctic Grounded Ice Sheet Elevation Change','NASA NSIDC','https://nsidc.org/data/nsidc-0782/versions/1','1985-2020','netCDF-4','Monthly Antarctic ice-sheet elevation change from radar and laser altimetry.'),

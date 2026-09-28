@@ -190,17 +190,13 @@ export default function Home() {
     finally { setUploading(false); }
   }
 
-  if(!authReady) return <div className="boot-screen"><div className="boot-mark">
-  <img src="/favicon.svg" alt="POLARIS" />
-</div><div className="section-label">POLARIS / INITIALIZING</div><span>Preparing polar knowledge grid…</span></div>;
+  if(!authReady) return <div className="boot-screen"><div className="boot-mark">P</div><div className="section-label">POLARIS / INITIALIZING</div><span>Preparing polar knowledge grid…</span></div>;
   if(!authenticated) return <LoginScreen email={loginEmail} setEmail={setLoginEmail} password={loginPassword} setPassword={setLoginPassword} onLogin={login}/>;
 
   return <div className="app">
     <aside className={`sidebar ${menuOpen?"open":""}`}>
       <div className="brand-row">
-        <div className="brand-mark">
-        <img src="/favicon.svg" alt="POLARIS" />
-        </div>
+        <div className="brand-mark">P</div>
         <div><div className="brand">POLARIS</div><div className="brand-sub">POLAR KNOWLEDGE SYSTEM</div></div>
         <button className="mobile-close" onClick={()=>setMenuOpen(false)}><X size={18}/></button>
       </div>
@@ -393,9 +389,7 @@ function LoginScreen({email,setEmail,password,setPassword,onLogin}:{email:string
     <div className="login-field-grid"/>
     <div className="login-orbit"><div className="login-axis x"/><div className="login-axis y"/><i/><i/><i/></div>
     <section className="login-card">
-      <div className="login-brand"><div className="login-mark">
-        <img src="/favicon.svg" alt="POLARIS" />
-      </div><strong>POLARIS</strong><span>POLAR KNOWLEDGE SYSTEM</span></div>
+      <div className="login-brand"><div className="login-mark">P</div><div><strong>POLARIS</strong><span>POLAR KNOWLEDGE SYSTEM</span></div></div>
       <div className="section-label">SECURE RESEARCH WORKSPACE</div>
       <h1>Enter the<br/><em>polar grid.</em></h1>
       <p>Sign in to access indexed research, field stations, grounded knowledge and the publication workspace.</p>
@@ -498,7 +492,7 @@ function MediaView(){
   useEffect(()=>{fetch(`${API}/api/media`).then(r=>r.ok?r.json():[]).then(d=>setItems(Array.isArray(d)?d:[])).catch(()=>setItems([])).finally(()=>setLoading(false))},[]);
   const iconFor=(t:string)=>t.includes("VIDEO")?<Video size={18}/>:t.includes("AUDIO")?<Headphones size={18}/>:t.includes("SATELLITE")?<Radio size={18}/>:<Image size={18}/>;
   return <section className="page"><div className="page-intro"><div><div className="section-label">MEDIA / FIELD EVIDENCE</div><h2>Media library</h2><p>Indexed field photographs, satellite observations, audio and expedition footage — catalogued with provenance before the underlying media is used.</p></div><div className="count-box">{items.length.toString().padStart(2,"0")} ASSETS</div></div>
-    {loading?<div className="module-placeholder"><LoaderCircle className="spin" size={28}/><h3>Loading media index</h3></div>:<div className="media-grid">{items.map(item=><article className="media-card" key={item.id}><div className="media-icon">{iconFor(item.media_type)}</div><div><div className="section-label">{item.media_type}</div><h3>{item.title}</h3><p>{item.metadata?.provider||"Source provider"}{item.station?` · ${item.station}`:""}</p><span className="catalogued"><CheckCircle2 size={12}/> CATALOGUED / PROVENANCE READY</span></div></article>)}</div>}
+    {loading?<div className="module-placeholder"><LoaderCircle className="spin" size={28}/><h3>Loading media index</h3></div>:<div className="media-grid">{items.map(item=>{const url=item.metadata?.open_url||item.metadata?.source_url; const isVideo=String(item.media_type||"").includes("VIDEO"); return <article className="media-card" key={item.id}><div className="media-icon">{iconFor(item.media_type)}</div><div><div className="section-label">{item.media_type}</div><h3>{item.title}</h3><p>{item.metadata?.provider||"Source provider"}{item.station?` · ${item.station}`:""}</p><span className="catalogued"><CheckCircle2 size={12}/> CATALOGUED / PROVENANCE READY</span>{url&&<a className="media-source-link" href={url} target="_blank" rel="noreferrer">{isVideo?<><Video size={13}/> Play / Open source</>:<><ExternalLink size={13}/> View source</>}</a>}</div></article>})}</div>}
     <div className="media-note"><ShieldCheck size={17}/><div><b>Media-first, evidence-safe</b><span>POLARIS stores the catalogue and provenance layer separately from large media files. This keeps the demo lightweight while preserving a path to full media ingestion.</span></div></div>
   </section>;
 }
