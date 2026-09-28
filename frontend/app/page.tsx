@@ -190,13 +190,17 @@ export default function Home() {
     finally { setUploading(false); }
   }
 
-  if(!authReady) return <div className="boot-screen"><div className="boot-mark">P</div><div className="section-label">POLARIS / INITIALIZING</div><span>Preparing polar knowledge grid…</span></div>;
+  if(!authReady) return <div className="boot-screen"><div className="boot-mark">
+  <img src="/favicon.svg" alt="POLARIS" />
+</div><div className="section-label">POLARIS / INITIALIZING</div><span>Preparing polar knowledge grid…</span></div>;
   if(!authenticated) return <LoginScreen email={loginEmail} setEmail={setLoginEmail} password={loginPassword} setPassword={setLoginPassword} onLogin={login}/>;
 
   return <div className="app">
     <aside className={`sidebar ${menuOpen?"open":""}`}>
       <div className="brand-row">
-        <div className="brand-mark">P</div>
+        <div className="brand-mark">
+        <img src="/favicon.svg" alt="POLARIS" />
+        </div>
         <div><div className="brand">POLARIS</div><div className="brand-sub">POLAR KNOWLEDGE SYSTEM</div></div>
         <button className="mobile-close" onClick={()=>setMenuOpen(false)}><X size={18}/></button>
       </div>
@@ -389,7 +393,9 @@ function LoginScreen({email,setEmail,password,setPassword,onLogin}:{email:string
     <div className="login-field-grid"/>
     <div className="login-orbit"><div className="login-axis x"/><div className="login-axis y"/><i/><i/><i/></div>
     <section className="login-card">
-      <div className="login-brand"><div className="login-mark">P</div><div><strong>POLARIS</strong><span>POLAR KNOWLEDGE SYSTEM</span></div></div>
+      <div className="login-brand"><div className="login-mark">
+        <img src="/favicon.svg" alt="POLARIS" />
+      </div><strong>POLARIS</strong><span>POLAR KNOWLEDGE SYSTEM</span></div>
       <div className="section-label">SECURE RESEARCH WORKSPACE</div>
       <h1>Enter the<br/><em>polar grid.</em></h1>
       <p>Sign in to access indexed research, field stations, grounded knowledge and the publication workspace.</p>

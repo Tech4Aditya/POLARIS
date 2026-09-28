@@ -277,10 +277,10 @@ The current demonstration includes:
 
 | Item                          | Count / Result |
 |-------------------------------|----------------|
-| Indexed research sources      | 28+            |
-| Dataset records               | 8              |
-| Media catalogue records       | 8              |
-| Expeditions                   | 8              |
+| Indexed research sources      | 50+            |
+| Dataset records               | 25             |
+| Media catalogue records       | 24             |
+| Expeditions                   | 12             |
 | Research stations             | 12             |
 | Antarctic RAG benchmark       | 50 questions   |
 | Source Recall@5               | 92%            |

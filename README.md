@@ -1,10 +1,14 @@
 # POLARIS
 
-> **AI-powered intelligent search, discovery, and connection platform.**
+> **Transforming Antarctic research into verified, accessible knowledge.**
 
-POLARIS is an AI-driven platform designed to transform scattered information into meaningful, searchable knowledge and actionable connections.
+POLARIS is an Antarctic research knowledge and outreach platform that brings
+research sources, datasets, expeditions, stations and multimedia into one
+searchable environment.
 
-It combines a modern web interface, backend services, asynchronous workers, structured data storage, and an evaluation-driven RAG pipeline into a single modular system.
+It connects research discovery, source-grounded knowledge retrieval,
+geospatial exploration, content creation and human review in a single
+workflow.
 
 ---
 
@@ -103,9 +107,17 @@ Backend and worker services include Docker configurations, with a root-level `do
 
 ## Documentation
 
-- **System Architecture** → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+- **System Architecture**        → [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
 - **Backend Development Journey** → [`backend/JOURNEY.md`](backend/JOURNEY.md)
 - **Frontend Development Journey** → [`frontend/JOURNEY.md`](frontend/JOURNEY.md)
+- **API Documentation**          → [`docs/API.md`](docs/API.md)
+- **Data Sources**               → [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md)
+- **Data Expansion**             → [`docs/DATA_EXPANSION.md`](docs/DATA_EXPANSION.md)
+- **Deployment Guide**            → [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
+- **Product Blueprint**          → [`docs/PRODUCT.md`](docs/PRODUCT.md)
+- **PPT ↔ Product Traceability** → [`docs/PPT_MAPPING.md`](docs/PPT_MAPPING.md)
+- **RAG Evaluation**             → [`docs/evaluation/RAG_EVALUATION.md`](docs/evaluation/RAG_EVALUATION.md)
+- **Scripts & Reproducibility**  → [`scripts/README.md`](scripts/README.md)
 
 ---
 
