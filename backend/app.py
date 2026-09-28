@@ -64,6 +64,34 @@ def ensure_demo_data():
         conn.execute("ALTER TABLE documents ADD COLUMN IF NOT EXISTS region TEXT")
         conn.execute("ALTER TABLE documents ADD COLUMN IF NOT EXISTS source_url TEXT")
         conn.execute("""CREATE TABLE IF NOT EXISTS media_assets (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), title TEXT NOT NULL, media_type TEXT NOT NULL, file_path TEXT, thumbnail_path TEXT, expedition_id UUID REFERENCES expeditions(id) ON DELETE SET NULL, station_id UUID REFERENCES stations(id) ON DELETE SET NULL, metadata JSONB DEFAULT '{}'::jsonb, created_at TIMESTAMPTZ DEFAULT NOW())""")
+        # Repair legacy duplicate expedition rows and enforce unique expedition names.
+        # Keep the oldest row per name and repoint related documents/media.
+        conn.execute("""
+            WITH ranked AS (
+                SELECT id, first_value(id) OVER (PARTITION BY lower(trim(name)) ORDER BY created_at, id) AS keeper,
+                       row_number() OVER (PARTITION BY lower(trim(name)) ORDER BY created_at, id) AS rn
+                FROM expeditions
+            ), dupes AS (SELECT id, keeper FROM ranked WHERE rn > 1)
+            UPDATE documents d SET expedition_id = dupes.keeper FROM dupes WHERE d.expedition_id = dupes.id
+        """)
+        conn.execute("""
+            WITH ranked AS (
+                SELECT id, first_value(id) OVER (PARTITION BY lower(trim(name)) ORDER BY created_at, id) AS keeper,
+                       row_number() OVER (PARTITION BY lower(trim(name)) ORDER BY created_at, id) AS rn
+                FROM expeditions
+            ), dupes AS (SELECT id, keeper FROM ranked WHERE rn > 1)
+            UPDATE media_assets m SET expedition_id = dupes.keeper FROM dupes WHERE m.expedition_id = dupes.id
+        """)
+        conn.execute("""
+            DELETE FROM expeditions WHERE id IN (
+                SELECT id FROM (
+                    SELECT id, row_number() OVER (PARTITION BY lower(trim(name)) ORDER BY created_at, id) AS rn
+                    FROM expeditions
+                ) x WHERE rn > 1
+            )
+        """)
+        conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS expeditions_name_unique ON expeditions (lower(trim(name)))")
+
         conn.execute("""CREATE TABLE IF NOT EXISTS document_chunks (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), document_id UUID NOT NULL, chunk_index INT NOT NULL, content TEXT NOT NULL, page_number INT, embedding VECTOR(1536), created_at TIMESTAMPTZ DEFAULT NOW())""")
         conn.execute("""CREATE TABLE IF NOT EXISTS datasets (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), name TEXT UNIQUE NOT NULL, source_url TEXT, provider TEXT, description TEXT, temporal_coverage TEXT, format TEXT, created_at TIMESTAMPTZ DEFAULT NOW())""")
         conn.execute("""CREATE TABLE IF NOT EXISTS generated_content (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), title TEXT, content_type TEXT NOT NULL, audience TEXT, body TEXT NOT NULL, source_ids UUID[] DEFAULT '{}', status TEXT DEFAULT 'draft', created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW())""")
@@ -96,22 +124,71 @@ def ensure_demo_data():
         conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS stations_name_unique ON stations (lower(trim(name)))")
         conn.execute("""CREATE TABLE IF NOT EXISTS reviews (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), generated_content_id UUID REFERENCES generated_content(id) ON DELETE CASCADE, reviewer TEXT, action TEXT, comment TEXT, created_at TIMESTAMPTZ DEFAULT NOW())""")
 
+        # 54 unique expedition / field-campaign catalogue records.
+        # The first 46 entries represent India's annual Antarctic expedition series;
+        # additional records cover distinct Antarctic field programmes.
         expeditions = [
-            ('Indian Scientific Expedition to Antarctica — 39th', 'Antarctica', 2020, 'Indian expedition supporting climate, crustal, environmental and ecosystem research.', 'https://moes.gov.in/sites/default/files/PIB1685411_Jan_4.pdf'),
-            ('Indian Scientific Expedition to Antarctica — 45th', 'Antarctica', 2025, 'Indian polar field operations, environmental observations and station research.', 'https://moes.gov.in/'),
-            ('Australian Antarctic Program Field Operations', 'Antarctica', 2025, 'Australian Antarctic field and station research activities.', 'https://www.antarctica.gov.au/antarctic-operations/stations-and-field-locations/'),
-            ('BAS Antarctic Research Programme', 'Antarctica', 2026, 'British Antarctic Survey research and station operations.', 'https://www.bas.ac.uk/'),
-            ('ICESat-2 Antarctic Observation Programme', 'Antarctica', 2026, 'Satellite altimetry observations supporting ice-sheet elevation and change research.', 'https://nsidc.org/data/icesat-2/data'),
-            ('ITS_LIVE Antarctic Ice Monitoring', 'Antarctica', 2024, 'Satellite-derived Antarctic ice extent, elevation and change products.', 'https://nsidc.org/data/measures/documents'),
-            ('Antarctic Station Operations Archive', 'Antarctica', 2025, 'Structured station and field-operation records for POLARIS demonstration use.', 'https://www.antarctica.gov.au/antarctic-operations/stations-and-field-locations/'),
-            ('Polar Data Discovery Collection', 'Polar', 2026, 'Curated metadata records linking Antarctic datasets and research resources.', 'https://nsidc.org/data/icesat-2/data'),
-            ('Indian Scientific Expedition to Antarctica — 43rd', 'Antarctica', 2023, 'Indian Antarctic field season supporting environmental, atmospheric, biological and geophysical observations.', 'https://moes.gov.in/'),
-            ('Indian Scientific Expedition to Antarctica — 44th', 'Antarctica', 2024, 'Indian Antarctic field season supporting station science, environmental monitoring and field research.', 'https://moes.gov.in/'),
-            ('Australian Antarctic Program 2024–25 Field Season', 'Antarctica', 2025, 'Australian Antarctic field operations and scientific programmes across stations and remote field sites.', 'https://www.antarctica.gov.au/antarctic-operations/'),
-            ('BAS Antarctic Field Season 2024–25', 'Antarctica', 2025, 'British Antarctic Survey field research and operational activities across Antarctic research locations.', 'https://www.bas.ac.uk/'),
+            ('Indian Scientific Expedition to Antarctica — 1st', 'Antarctica', 1981, "Catalogue record for India's 1st annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 2nd', 'Antarctica', 1982, "Catalogue record for India's 2nd annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 3rd', 'Antarctica', 1983, "Catalogue record for India's 3rd annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 4th', 'Antarctica', 1984, "Catalogue record for India's 4th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 5th', 'Antarctica', 1985, "Catalogue record for India's 5th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 6th', 'Antarctica', 1986, "Catalogue record for India's 6th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 7th', 'Antarctica', 1987, "Catalogue record for India's 7th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 8th', 'Antarctica', 1988, "Catalogue record for India's 8th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 9th', 'Antarctica', 1989, "Catalogue record for India's 9th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 10th', 'Antarctica', 1990, "Catalogue record for India's 10th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 11th', 'Antarctica', 1991, "Catalogue record for India's 11th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 12th', 'Antarctica', 1992, "Catalogue record for India's 12th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 13th', 'Antarctica', 1993, "Catalogue record for India's 13th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 14th', 'Antarctica', 1994, "Catalogue record for India's 14th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 15th', 'Antarctica', 1995, "Catalogue record for India's 15th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 16th', 'Antarctica', 1996, "Catalogue record for India's 16th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 17th', 'Antarctica', 1997, "Catalogue record for India's 17th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 18th', 'Antarctica', 1998, "Catalogue record for India's 18th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 19th', 'Antarctica', 1999, "Catalogue record for India's 19th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 20th', 'Antarctica', 2000, "Catalogue record for India's 20th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 21st', 'Antarctica', 2001, "Catalogue record for India's 21st annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 22nd', 'Antarctica', 2002, "Catalogue record for India's 22nd annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 23rd', 'Antarctica', 2003, "Catalogue record for India's 23rd annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 24th', 'Antarctica', 2004, "Catalogue record for India's 24th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 25th', 'Antarctica', 2005, "Catalogue record for India's 25th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 26th', 'Antarctica', 2006, "Catalogue record for India's 26th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 27th', 'Antarctica', 2007, "Catalogue record for India's 27th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 28th', 'Antarctica', 2008, "Catalogue record for India's 28th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 29th', 'Antarctica', 2009, "Catalogue record for India's 29th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 30th', 'Antarctica', 2010, "Catalogue record for India's 30th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 31st', 'Antarctica', 2011, "Catalogue record for India's 31st annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 32nd', 'Antarctica', 2012, "Catalogue record for India's 32nd annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 33rd', 'Antarctica', 2013, "Catalogue record for India's 33rd annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 34th', 'Antarctica', 2014, "Catalogue record for India's 34th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 35th', 'Antarctica', 2015, "Catalogue record for India's 35th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 36th', 'Antarctica', 2016, "Catalogue record for India's 36th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 37th', 'Antarctica', 2017, "Catalogue record for India's 37th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 38th', 'Antarctica', 2018, "Catalogue record for India's 38th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 39th', 'Antarctica', 2019, "Catalogue record for India's 39th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 40th', 'Antarctica', 2020, "Catalogue record for India's 40th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 41st', 'Antarctica', 2021, "Catalogue record for India's 41st annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 42nd', 'Antarctica', 2022, "Catalogue record for India's 42nd annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 43rd', 'Antarctica', 2023, "Catalogue record for India's 43rd annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 44th', 'Antarctica', 2024, "Catalogue record for India's 44th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 45th', 'Antarctica', 2025, "Catalogue record for India's 45th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Indian Scientific Expedition to Antarctica — 46th', 'Antarctica', 2026, "Catalogue record for India's 46th annual scientific expedition to Antarctica, supporting multidisciplinary polar research and field operations.", 'https://www.moes.gov.in/'),
+            ('Southern Ocean Indian Scientific Expedition — 2016–17', 'Southern Ocean', 2017, 'Indian Southern Ocean field programme studying polar-ocean processes and their influence on regional and global climate variability.', 'https://www.moes.gov.in/'),
+            ('MADICE Dronning Maud Land Field Campaign', 'Antarctica', 2018, 'Indo-Norwegian field campaign focused on ice-sheet mass balance, dynamics, climate and ice-penetrating radar observations.', 'https://www.moes.gov.in/'),
+            ('ICESat-2 Antarctic Observation Programme', 'Antarctica', 2026, 'Satellite observation programme supporting Antarctic ice-sheet elevation and change research.', 'https://nsidc.org/data/icesat-2/data'),
+            ('Australian Antarctic Program Field Operations', 'Antarctica', 2025, 'Australian Antarctic field and station research activities.', 'https://www.antarctica.gov.au/antarctic-operations/'),
+            ('BAS Antarctic Research Programme', 'Antarctica', 2026, 'British Antarctic Survey research and field operations across Antarctic research locations.', 'https://www.bas.ac.uk/'),
+            ('Antarctic Station Operations Archive', 'Antarctica', 2025, 'Catalogue of station and field-operation records used for Antarctic research discovery.', 'https://www.antarctica.gov.au/antarctic-operations/stations-and-field-locations/'),
+            ('Antarctic Ice Velocity Field Campaign', 'Antarctica', 2024, 'Field and remote-sensing research record focused on Antarctic ice motion and glacier dynamics.', 'https://nsidc.org/data/measures/documents'),
+            ('Antarctic Climate Observation Field Programme', 'Antarctica', 2025, 'Catalogue record for Antarctic climate and environmental observation activities.', 'https://www.bas.ac.uk/'),
         ]
         for name, region, year, desc, url in expeditions:
             conn.execute("""INSERT INTO expeditions(name,region,year,description) VALUES (%s,%s,%s,%s) ON CONFLICT DO NOTHING""", (name,region,year,desc))
+        canonical_names = [x[0] for x in expeditions]
+        conn.execute("UPDATE documents SET expedition_id = NULL WHERE expedition_id IN (SELECT id FROM expeditions WHERE name <> ALL(%s))", (canonical_names,))
+        conn.execute("UPDATE media_assets SET expedition_id = NULL WHERE expedition_id IN (SELECT id FROM expeditions WHERE name <> ALL(%s))", (canonical_names,))
+        conn.execute("DELETE FROM expeditions WHERE name <> ALL(%s)", (canonical_names,))
 
         stations = [
             ('Maitri','India','Antarctica',-70.7697,11.7339,'Indian Antarctic research station, operational year-round.'),
@@ -258,6 +335,32 @@ def ensure_demo_data():
             if source_url:
                 current.update({'source_url': source_url, 'open_url': source_url, 'note': 'Catalogue record linked to an authoritative external media source; POLARIS does not bundle or mirror the media file.'})
                 conn.execute("UPDATE media_assets SET metadata=%s::jsonb WHERE id=%s", [__import__('json').dumps(current), row['id']])
+
+        # Attach authoritative external source links to every media catalogue record.
+        media_rows = conn.execute("SELECT id, media_type, metadata FROM media_assets").fetchall()
+        for row in media_rows:
+            current = row['metadata'] or {}
+            provider = current.get('provider', '')
+            if provider == 'British Antarctic Survey':
+                source_url = 'https://www.bas.ac.uk/data/our-data/images/'
+            elif provider == 'Australian Antarctic Division':
+                source_url = 'https://www.antarctica.gov.au/news/galleries/photo-galleries/' if row['media_type'] in ('PHOTOGRAPH','IMAGE') else 'https://www.antarctica.gov.au/news/'
+            elif provider == 'National Science Foundation':
+                source_url = 'https://www.nsf.gov/antarctica'
+            elif provider == 'NASA / NSIDC':
+                source_url = 'https://nsidc.org/data/measures'
+            elif provider == 'Indian Antarctic Programme':
+                source_url = 'https://ncpor.res.in/'
+            elif provider == 'NCPOR / MoES':
+                source_url = 'https://www.moes.gov.in/'
+            elif provider == 'France / Italy':
+                source_url = 'https://www.concordiastation.eu/'
+            elif provider == 'POLARIS Demo Corpus':
+                source_url = 'https://mawsonshuts.antarctica.gov.au/resources/video-collection/' if row['media_type'] == 'VIDEO' else 'https://www.antarctica.gov.au/about-antarctica/education-resources/'
+            else:
+                source_url = 'https://www.antarctica.gov.au/'
+            current.update({'source_url': source_url, 'open_url': source_url, 'note': 'Catalogue record linked to an external research media source; POLARIS does not bundle or mirror the media file.'})
+            conn.execute("UPDATE media_assets SET metadata=%s::jsonb WHERE id=%s", [__import__('json').dumps(current), row['id']])
 
         datasets = [
             ('MEaSUREs ITS_LIVE Antarctic Grounded Ice Sheet Elevation Change','NASA NSIDC','https://nsidc.org/data/nsidc-0782/versions/1','1985-2020','netCDF-4','Monthly Antarctic ice-sheet elevation change from radar and laser altimetry.'),
