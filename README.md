@@ -46,25 +46,25 @@ The system is designed around retrieval quality, grounded answers, modular archi
 
 ## 🚀 Features
 
-### 🤖 AI-Powered Search
+### AI-Powered Search
 Understand natural-language queries and retrieve information based on semantic relevance rather than relying purely on exact keyword matching.
 
-### 🔎 Retrieval-Augmented Generation
+### Retrieval-Augmented Generation
 POLARIS uses a retrieval pipeline to provide relevant context before generating responses. This helps reduce unsupported responses and keeps generated answers grounded in retrieved information.
 
-### 🧠 Context-Aware Responses
+### Context-Aware Responses
 Instead of treating every query as an isolated keyword search, the system works with retrieved context to produce more meaningful answers.
 
-### ⚡ Asynchronous Processing
+### Asynchronous Processing
 Background workers handle processing tasks separately from the main API, keeping the application architecture scalable and responsive.
 
-### 🌐 Modern Web Interface
+### Modern Web Interface
 A responsive Next.js frontend provides the primary user-facing interface for interacting with POLARIS.
 
-### 🗄️ Structured Data Layer
+### Structured Data Layer
 The project includes a dedicated database initialization layer for managing application data.
 
-### 📊 Evaluation Pipeline
+### Evaluation Pipeline
 POLARIS includes an evaluation framework for measuring retrieval and answer quality instead of relying only on subjective testing.
 
 Current evaluation artifacts are available in:
